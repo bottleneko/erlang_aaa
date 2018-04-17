@@ -34,15 +34,15 @@ Erlang Authentication, Authorization, Accounting
 ### Авторизация
 
     curl -H "Content-Type: application/json" 127.0.0.1:8080/user/auth/ -d '{"user":"login", "password":"password"}'
-    >   {"token": "`<some token>`"}
+    >   {"token": "%some token%"}
 
 ### Смена пароля
 
-    сurl -H "Content-Type: application/json" 127.0.0.1:8080/user/login -H "authorization: Bearer <`some token`> " -d '{"old_password":"pass", "new_password":"pass1"}'
+    сurl -H "Content-Type: application/json" 127.0.0.1:8080/user/login -H "authorization: Bearer %some token% " -d '{"old_password":"pass", "new_password":"pass1"}'
 
 ### Получение списка пользователей
 
-    сurl -H "Content-Type: application/json" 127.0.0.1:8080/user -H "authorization: Bearer <`some token`> " -d '{"old_password":"pass", "new_password":"pass1"}'
+    сurl -H "Content-Type: application/json" 127.0.0.1:8080/user -H "authorization: Bearer %some token% " -d '{"old_password":"pass", "new_password":"pass1"}'
 
 ## Структура проекта
 
@@ -62,4 +62,4 @@ include/users.hrl | Заголовок с записями account и session
 ## Дополнительная информация
 
 * Регистрация пользователей с именами registration и auth не заблокирована, но смена пароля для них недоступна
-* Ошибки вида `<{badmatch, Reason}>` отображаются для удобства отладки и тестирования. Let it crash.
+* Ошибки вида `{badmatch, Reason}` отображаются для удобства отладки и тестирования. Let it crash.
