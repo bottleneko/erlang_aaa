@@ -17,7 +17,8 @@ start(_StartType, _StartArgs) ->
     ]}
   ]),
   Sup = erlang_aaa_sup:start_link(),
-  {ok, _} = cowboy:start_clear(http, [{port, 8080}], #{
+  Port = application:get_env(erlang_aaa, cowboy_port, 8080),
+  {ok, _} = cowboy:start_clear(http, [{port, Port}], #{
     env => #{dispatch => Dispatch}
   }),
   Sup.

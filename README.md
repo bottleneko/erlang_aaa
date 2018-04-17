@@ -21,6 +21,8 @@ Erlang Authentication, Authorization, Accounting
 
 Тесты покрывают все приведенные в файле с заданием кейсы для проверок.
 
+По умолчанию веб-сервером используется 8080 порт.
+
 ## Запуск
 
     $ rebar3 shell
@@ -38,7 +40,7 @@ Erlang Authentication, Authorization, Accounting
 
 ### Смена пароля
 
-    сurl -H "Content-Type: application/json" 127.0.0.1:8080/user/login -H "authorization: Bearer %some token% " -d '{"old_password":"pass", "new_password":"pass1"}'
+    сurl -X PUT -H "Content-Type: application/json" 127.0.0.1:8080/user/login -H "authorization: Bearer %some token% " -d '{"old_password":"pass", "new_password":"pass1"}'
 
 ### Получение списка пользователей
 
@@ -47,7 +49,7 @@ Erlang Authentication, Authorization, Accounting
 ## Структура проекта
 
 Путь до файла | Содержимое
------------- | -------------
+------------- | -------------
 src/erlang_aaa_app.src | Точка входа в приложение
 src/erlang_aaa_app.erl | Точка входа в приложение с путями cowboy
 src/erlang_aaa_sup.erl | Cупервизор верхнего уровня
@@ -58,6 +60,19 @@ src/show_users_handler.erl | Обработчик запросов по /user/
 src/users_db.erl | Хранилище пользовательских аккаунтов и активных сессий
 src/users_utils.erl | Функции, которые использовались в нескольких модулях
 include/users.hrl | Заголовок с записями account и session
+
+## Маршруты REST API
+
+Для всех запросов используется значение: "Content-Type: application/json"
+
+Для всех ответов: "Accept: application/json"
+
+Маршрут | Метод  | Назначение | Тело запроса | Заголовок запроса
+------- | ------ | ---------- | ------------ | --------------
+/user/registration | POST | Регистрация пользователя | {"user":"login", "password":"password"} 
+/user/auth | POST | Авторизация пользователя | {"user":"login", "password":"password"}
+/user/[:login] | PUT | Изменение пароля пользователя | {"old_password":"old_password", "new_password":"new_password"} | "Authorization: Bearer token"
+/user/ | GET | Получить список пользователей | | "Authorization: Bearer token"
 
 ## Дополнительная информация
 
