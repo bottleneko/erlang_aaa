@@ -146,7 +146,7 @@ success_password_changing_test(_Config) ->
     end),
   Token = receive {token, A} -> A end,
   BodyJson_2 = jiffy:encode(#{<<"old_password">> => <<"password">>, <<"new_password">> => <<"pass">>}),
-  StreamRef_3 = gun:post(ConnPid, "/user/login", [
+  StreamRef_3 = gun:put(ConnPid, "/user/login", [
     {<<"content-type">>, "application/json"},
     {<<"authorization">>, "Bearer " ++ binary_to_list(Token)}
   ], BodyJson_2),
@@ -155,7 +155,7 @@ success_password_changing_test(_Config) ->
 unauthorized_password_changing_test(_Config) ->
   {ok, ConnPid} = gun:open("localhost", 8080, #{connect_timeout => infinity, retry => 0}),
   BodyJson = jiffy:encode(#{<<"old_password">> => <<"password">>, <<"new_password">> => <<"pass">>}),
-  StreamRef = gun:post(ConnPid, "/user/login1", [
+  StreamRef = gun:put(ConnPid, "/user/login1", [
     {<<"content-type">>, "application/json"}
   ], BodyJson),
   common_compare(ConnPid, StreamRef, 401, <<"">>).
@@ -179,7 +179,7 @@ other_user_password_changing_test(_Config) ->
     end),
   Token = receive {token, A} -> A end,
   BodyJson_2 = jiffy:encode(#{<<"old_password">> => <<"password">>, <<"new_password">> => <<"pass">>}),
-  StreamRef_3 = gun:post(ConnPid, "/user/login1", [
+  StreamRef_3 = gun:put(ConnPid, "/user/login1", [
     {<<"content-type">>, "application/json"},
     {<<"authorization">>, "Bearer " ++ binary_to_list(Token)}
   ], BodyJson_2),
@@ -204,7 +204,7 @@ wrong_old_password_changing_test(_Config) ->
     end),
   Token = receive {token, A} -> A end,
   BodyJson_2 = jiffy:encode(#{<<"old_password">> => <<"wrongpassword">>, <<"new_password">> => <<"pass">>}),
-  StreamRef_3 = gun:post(ConnPid, "/user/login", [
+  StreamRef_3 = gun:put(ConnPid, "/user/login", [
     {<<"content-type">>, "application/json"},
     {<<"authorization">>, "Bearer " ++ binary_to_list(Token)}
   ], BodyJson_2),
@@ -231,7 +231,7 @@ invalid_json_password_changing_test(_Config) ->
     end),
   Token = receive {token, A} -> A end,
   BodyJson_2 = <<"{\"123\"">>,
-  StreamRef_3 = gun:post(ConnPid, "/user/login", [
+  StreamRef_3 = gun:put(ConnPid, "/user/login", [
     {<<"content-type">>, "application/json"},
     {<<"authorization">>, "Bearer " ++ binary_to_list(Token)}
   ], BodyJson_2),

@@ -15,7 +15,7 @@ init(Req, Opts) ->
 -spec allowed_methods(Req :: cowboy_req:req(), State :: any()) ->
   {[binary()], cowboy_req:req(), any()}.
 allowed_methods(Req, State) ->
-  {[<<"POST">>], Req, State}.
+  {[<<"PUT">>], Req, State}.
 
 -spec content_types_accepted(Req :: cowboy_req:req(), State :: any()) ->
   {[{binary(), atom()}],
