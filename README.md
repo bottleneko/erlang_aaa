@@ -46,20 +46,20 @@ Erlang Authentication, Authorization, Accounting
 
 ## Структура проекта
 
-     Путь до файла | Содержимое
-    ------------ | -------------
-    src/erlang_aaa_app.src | Точка входа в приложение
-    src/erlang_aaa_app.erl | Точка входа в приложение с путями cowboy
-    src/erlang_aaa_sup.erl | Cупервизор верхнего уровня
-    src/registration_handler.erl | Обработчик запросов по /user/registration
-    src/auth_handler.erl | Обработчик запросов по /user/auth
-    src/change_password_handler.erl | Обработчик запросов по /user/[:login]
-    src/show_users_handler.erl | Обработчик запросов по /user/
-    src/users_db.erl | Хранилище пользовательских аккаунтов и активных сессий
-    src/users_utils.erl | Функции, которые использовались в нескольких модулях
-    include/users.hrl | Заголовок с записями account и session
+Путь до файла | Содержимое
+------------ | -------------
+src/erlang_aaa_app.src | Точка входа в приложение
+src/erlang_aaa_app.erl | Точка входа в приложение с путями cowboy
+src/erlang_aaa_sup.erl | Cупервизор верхнего уровня
+src/registration_handler.erl | Обработчик запросов по /user/registration
+src/auth_handler.erl | Обработчик запросов по /user/auth
+src/change_password_handler.erl | Обработчик запросов по /user/[:login]
+src/show_users_handler.erl | Обработчик запросов по /user/
+src/users_db.erl | Хранилище пользовательских аккаунтов и активных сессий
+src/users_utils.erl | Функции, которые использовались в нескольких модулях
+include/users.hrl | Заголовок с записями account и session
 
 ## Дополнительная информация
 
-    * Регистрация пользователей с именами registration и auth не заблокирована, но смена пароля для них недоступна
-    * Ошибки вида `<{badmatch, Reason}>` отображаются для удобства отладки и тестирования. Let it crash.
+* Регистрация пользователей с именами registration и auth не заблокирована, но смена пароля для них недоступна
+* Ошибки вида `<{badmatch, Reason}>` отображаются для удобства отладки и тестирования. Let it crash.
