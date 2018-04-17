@@ -1,0 +1,17 @@
+{application, erlang_aaa,
+ [{description, "Test task for internship"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {mod, { erlang_aaa_app, []}},
+  {applications,
+   [kernel,
+    stdlib,
+    cowboy
+   ]},
+  {env,[]},
+  {modules, [
+  ]},
+  {maintainers, []},
+  {licenses, ["MIT"]},
+  {links, []}
+ ]}.
