@@ -1,5 +1,4 @@
-# erlang_aaa [![Build Status](https://travis-ci.org/bottleneko/erlang_aaa.svg?branch=master)](https://travis-ci.org/bottleneko/erlang_aaa)
-
+# erlang_aaa [![Build Status](https://travis-ci.org/bottleneko/erlang_aaa.svg?branch=master)](https://travis-ci.org/bottleneko/erlang_aaa) ![Erlang OTP Version](https://img.shields.io/badge/erlang%2Fotp-20.2-green.svg)
 Erlang Authentication, Authorization, Accounting
 
 Тестовое задание на стажировку
